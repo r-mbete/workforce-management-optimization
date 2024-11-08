@@ -29,7 +29,7 @@ To run the project locally:
 
 3. **Run the Jupyter Notebook**:
    ```bash
-  jupyter notebook
+   jupyter notebook
    
 ## Issues and Assistance Needed
 Currently, I'm encountering challenges with model training and tuning, particularly with XGBoost. Any suggestions or contributions are greatly appreciated!
