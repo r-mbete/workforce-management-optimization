@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Employee Overview</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Job Role</th>
+        <th>Predicted Performance</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for employee in employees %}
+        <tr>
+          <td>{{ employee.name }}</td>
+          <td>{{ employee.job_role }}</td>
+          <td>{{ employee.predicted_performance }}</td>
+          <td>
+            <a href="{{ url_for('employee.view', employee_id=employee.id) }}">View</a> | 
+            <a href="{{ url_for('employee.predict', employee_id=employee.id) }}">Predict</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
