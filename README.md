@@ -135,5 +135,6 @@ Currently, I am working on:
 - Tuning the hyperparameters of the models for better performance.
 - Ensuring the models generalize well to unseen data.
 - Addressing potential issues with class imbalance using techniques like SMOTE (Synthetic Minority Over-sampling Technique).
+- Connecting the frontend and backend efficiently.
 
 Any suggestions, contributions, or feedback on improving the models or setting up the backend/frontend are greatly appreciated!
