@@ -71,7 +71,8 @@ def predict_employee(employee_id):
 
 def predict_performance(employee_data):
     # Load the model
-    model = joblib.load('model/saved_models/classifier.pkl')
+    model = joblib.load('app/ml/model.joblib')
+
     
     # Prepare data (similar to your notebook preprocessing)
     df = pd.DataFrame([employee_data])
