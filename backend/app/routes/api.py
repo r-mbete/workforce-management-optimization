@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app import db
 from app.models.models import Employee, Prediction
-from app.ml.classifier import predict_performance
+from app.ml.classifier import classify_performance  # Update to use 'classify_performance'
 
 bp = Blueprint('api', __name__, url_prefix='/api')
 
@@ -36,9 +36,9 @@ def get_dashboard_stats():
     }
     return jsonify(stats)
 
-# Endpoint to get performance prediction for an employee
-@bp.route('/employee/<int:employee_id>/predict', methods=['GET'])
-def get_prediction(employee_id):
+# Endpoint to classify performance for an employee
+@bp.route('/employee/<int:employee_id>/classify', methods=['GET'])
+def classify_employee_performance(employee_id):
     employee = Employee.query.get(employee_id)
     if not employee:
         return jsonify({'status': 'error', 'message': 'Employee not found'}), 404
@@ -49,9 +49,10 @@ def get_prediction(employee_id):
         'education_level': employee.education_level
     }
     
-    performance_rating, confidence = predict_performance(employee_data)
+    # Use the updated classify_performance function
+    performance_rating, confidence = classify_performance(employee_data)
     
-    # Save prediction to the database
+    # Save classification result to the database
     new_prediction = Prediction(
         employee_id=employee.id,
         performance_rating=performance_rating,

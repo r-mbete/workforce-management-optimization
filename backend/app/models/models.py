@@ -15,14 +15,14 @@ class Employee(db.Model):
     def __repr__(self):
         return f'<Employee {self.name}>'
 
-# Prediction Model
-class Prediction(db.Model):
-    __tablename__ = 'predictions'
+# Classification Result Model
+class ClassificationResult(db.Model):
+    __tablename__ = 'classification_results'
     id = db.Column(db.Integer, primary_key=True)
-    employee_id = db.Column(db.Integer, db.ForeignKey('employees.id'), nullable=False)
-    performance_rating = db.Column(db.String(20), nullable=False)
+    employee_id = db.Column(db.Integer, db.ForeignKey('employees.id'), nullable=False, index=True)
+    performance_rating = db.Column(db.String(50), nullable=False)
     confidence = db.Column(db.Float, nullable=False)
-    employee = db.relationship('Employee', backref=db.backref('predictions', lazy=True))
+    employee = db.relationship('Employee', backref=db.backref('classification_results', lazy=True))
 
     def __repr__(self):
-        return f'<Prediction {self.performance_rating} for {self.employee.name}>'
+        return f'<ClassificationResult {self.performance_rating} for {self.employee.name}>'
