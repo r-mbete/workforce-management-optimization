@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project aims to optimize workforce management by using machine learning algorithms to classify employees based on various features. The goal is to develop a model that aids in improving workforce management decisions by predicting employee performance and behavior. The project currently focuses on two algorithms for classification: Decision Tree and AdaBoost.
+This project aims to optimize workforce management by using machine learning algorithms to classify employees' performance based on various features. The objective is to develop a model that categorizes employees into performance groups, supporting better workforce management decisions. The project utilizes two primary classification algorithms: Decision Tree and AdaBoost, which help in categorizing employee performance into labels like Exceeds Expectations, Fully Meets Expectations, and Needs Improvement.
 
 ## Algorithms Used
 
@@ -118,8 +118,8 @@ To run this project locally, follow the steps below:
   - Feature engineering (if needed)
 
 - **Model Building:**
-  - Decision Tree Classifier for classification tasks.
-  - AdaBoost Classifier for ensemble learning.
+  - Decision Tree Classifier: Builds a decision tree for classification, which is easy to visualize and interpret.
+  - AdaBoost Classifier: Builds a robust ensemble classifier to reduce errors made by weak classifiers.
 
 - **Model Evaluation:**
   - Performance metrics such as accuracy, precision, recall, F1-score, and confusion matrix are calculated for each model.
@@ -132,9 +132,10 @@ To run this project locally, follow the steps below:
 
 Currently, I am working on:
 
-- Tuning the hyperparameters of the models for better performance.
-- Ensuring the models generalize well to unseen data.
-- Addressing potential issues with class imbalance using techniques like SMOTE (Synthetic Minority Over-sampling Technique).
-- Connecting the frontend and backend efficiently.
+- Model Generalization: Ensuring the model generalizes well on unseen data.
+- Class Imbalance: Addressing issues with class imbalance using techniques like SMOTE (Synthetic Minority Oversampling Technique).
+- API Integration: Integrating the ML model with the Flask API so it can classify new employee data via API requests.
+- Frontend-Backend Connection: Linking the frontend to the backend so that users can classify employee data directly from the web interface.
+- Explainability: Adding explanations for classification decisions, such as SHAP or LIME, to promote model transparency.
 
 Any suggestions, contributions, or feedback on improving the models or setting up the backend/frontend are greatly appreciated!
