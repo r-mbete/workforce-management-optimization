@@ -3,9 +3,9 @@ import axios from 'axios';
 
 const Dashboard = () => {
     const [stats, setStats] = useState({
-        highPerformers: 0,
-        avgPerformers: 0,
-        lowPerformers: 0,
+        exceedsExpectations: 0,
+        fullyMeetsExpectations: 0,
+        needsImprovement: 0,
     });
 
     useEffect(() => {
@@ -24,9 +24,9 @@ const Dashboard = () => {
         <div className="dashboard">
             <h2>Employee Performance Dashboard</h2>
             <div className="stats">
-                <p><strong>High Performers:</strong> {stats.highPerformers}</p>
-                <p><strong>Average Performers:</strong> {stats.avgPerformers}</p>
-                <p><strong>Low Performers:</strong> {stats.lowPerformers}</p>
+                <p><strong>Exceeds Expectations:</strong> {stats.exceedsExpectations}</p>
+                <p><strong>Fully Meets Expectations:</strong> {stats.fullyMeetsExpectations}</p>
+                <p><strong>Needs Improvement:</strong> {stats.needsImprovement}</p>
             </div>
         </div>
     );
