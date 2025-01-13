@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Optimizing Workforce Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Overall page styles for a modern look */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #E8F1FA, #F0F4F8); /* Gradient Background */
+            color: #333; /* Darker Text Color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            color: #1A202C; /* Very Dark Gray */
+            font-size: 2.8rem;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        header p {
+            color: #4A5568; /* Medium Gray */
+            font-size: 1.4rem;
+            margin-top: 10px;
+        }
+
+        /* Buttons Section */
+        .buttons {
+            margin-top: 25px;
+        }
+
+        .buttons a {
+            text-decoration: none;
+            color: #FFFFFF; /* White Text */
+            background: linear-gradient(to right, #4361EE, #3F8EFC); /* Gradient Button */
+            padding: 12px 25px;
+            border-radius: 8px;
+            margin: 0 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Subtle Shadow */
+        }
+
+        .buttons a:hover {
+            background: linear-gradient(to right, #3F8EFC, #4361EE); /* Reverse Gradient on Hover */
+            transform: translateY(-3px); /* Lift Effect */
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer Section */
+        footer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #718096; /* Soft Gray */
+        }
+
+        footer a {
+            color: #4361EE; /* Link Color */
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Optimizing Workforce Management</h1>
+        <p>Through Machine Learning Employee Classification</p>
+    </header>
+    
+    <div class="buttons">
+        <a href="{{ url_for('auth.login') }}">Login</a>
+        <a href="{{ url_for('auth.register') }}">Register</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Workforce Management Solutions. All rights reserved. 
+        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+</body>
+</html>

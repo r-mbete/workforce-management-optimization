@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * Chart Container */
+        .chart-container {
+            margin: 20px auto;
+            width: 80%; /* Set the width of the chart container */
+            max-width: 600px; /* Prevent it from growing too large */
+            height: 400px; /* Increase height for better visibility */
+            text-align: center;
+        }
+
+        /* Table Styling */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .styled-table th, .styled-table td {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .styled-table th {
+            background-color: #3F8EFC;
+            color: #FFFFFF;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .styled-table tbody tr {
+            background-color: #F7FAFC;
+            transition: background-color 0.3s ease;
+        }
+
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: #E6F7FF;
+        }
+
+        .styled-table tbody tr:hover {
+            background-color: #D6EDFF;
+        }
+
+        .styled-table tbody td {
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn-edit {
+            background-color: #28A745; /* Green */
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background-color: #218838;
+        }
+
+        .btn-delete {
+            background-color: #FF4D4D; /* Red */
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background-color: #D32F2F;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .styled-table, .styled-table thead, .styled-table tbody, .styled-table th, .styled-table td, .styled-table tr {
+                display: block;
+            }
+
+            .styled-table tr {
+                margin-bottom: 15px;
+                background-color: #fff;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                padding: 10px;
+            }
+
+            .styled-table th {
+                display: none;
+            }
+
+            .styled-table td {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px;
+                border: none;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="{{ url_for('main.dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('main.add_employee') }}">Add Employee</a></li>
+                <li><a href="{{ url_for('main.classify_employee') }}">Classify Employee</a></li>
+                <li><a href="{{ url_for('main.profile') }}">Profile</a></li>
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+            </ul>
+        </aside>
+        <main class="content">
+            <h1>Employee Performance Dashboard</h1>
+            <div class="chart-container">
+                <canvas id="performanceChart"></canvas>
+            </div>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Education Level</th>
+                        <th>Role</th>
+                        <th>Total Working Years</th>
+                        <th>Years in Current Role</th>
+                        <th>Work-Life Balance</th>
+                        <th>Job Satisfaction</th>
+                        <th>Performance</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employee in employees %}
+                    <tr>
+                        <td>{{ employee.id }}</td>
+                        <td>{{ employee.name }}</td>
+                        <td>{{ employee.age }}</td>
+                        <td>{{ employee.gender }}</td>
+                        <td>{{ employee.education_level }}</td>
+                        <td>{{ employee.job_role }}</td>
+                        <td>{{ employee.total_working_years }}</td>
+                        <td>{{ employee.years_in_current_role }}</td>
+                        <td>{{ employee.work_life_balance }}</td>
+                        <td>{{ employee.job_satisfaction }}</td>
+                        <td>
+                            {% set classification = classified_employees | selectattr('employee_id', 'equalto', employee.id) | list %}
+                            {% if classification %}
+                                {{ classification[0].performance_rating }} ({{ classification[0].confidence }}%)
+                            {% else %}
+                                Pending Classification
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="{{ url_for('main.edit_employee', employee_id=employee.id) }}" class="btn btn-edit">Edit</a>
+                                <form method="POST" action="{{ url_for('main.delete_employee', employee_id=employee.id) }}" style="display: inline;">
+                                    <button type="submit" class="btn btn-delete">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>                               
+            </table>
+            <div class="btn-container">
+                <form method="POST" action="{{ url_for('main.generate_report') }}">
+                    <button type="submit" class="btn">Generate Report</button>
+                </form>
+            </div>                        
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="{{ url_for('main.dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('main.add_employee') }}">Add Employee</a></li>
+                <li><a href="{{ url_for('main.classify_employee') }}">Classify Employee</a></li>
+                <li><a href="{{ url_for('main.profile') }}">Profile</a></li>
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="card">
+                <!-- User Profile Image -->
+                <div class="profile-image-container">
+                    <img src="{{ url_for('static', filename='images/default-profile.jpg') }}" alt="User Profile" class="profile-image">
+                </div>
+
+                <!-- User Info -->
+                <h1>{{ user.username }}</h1>
+                <p class="user-description">
+                    Dedicated HR professional specializing in workforce management and optimization. 
+                    Ensuring a seamless experience for managing employee data and performance analysis.
+                </p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+

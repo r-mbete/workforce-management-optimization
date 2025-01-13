@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Classification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .card {
+            padding: 20px;
+            background-color: #F7FAFC;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .results-table th, .results-table td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .results-table th {
+            background-color: #3F8EFC;
+            color: #FFFFFF;
+        }
+
+        .results-table tbody tr:nth-of-type(even) {
+            background-color: #E6F7FF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="{{ url_for('main.dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('main.add_employee') }}">Add Employee</a></li>
+                <li><a href="{{ url_for('main.classify_employee') }}">Classify Employee</a></li>
+                <li><a href="{{ url_for('main.profile') }}">Profile</a></li>
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="card">
+                <h1>Classify Employee</h1>
+                <form method="POST" action="{{ url_for('main.classify_employee') }}">
+                    <label for="employee">Select Employee:</label>
+                    <select id="employee" name="employee_id" required>
+                        {% for employee in employees %}
+                        <option value="{{ employee.id }}">{{ employee.name }} ({{ employee.employee_id }})</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit">Classify</button>
+                </form>
+            </div>
+
+            {% if prediction %}
+            <div class="card">
+                <h2>Prediction Results</h2>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Performance Rating</th>
+                            <th>Confidence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ employee.name }}</td>
+                            <td>{{ employee.job_role }}</td>
+                            <td>{{ classification.rating }}</td>
+                            <td>{{ classification.confidence }}%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </main>
+    </div>
+</body>
+</html>
+
