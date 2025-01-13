@@ -1,12 +1,15 @@
-import sys
-import os
+from app import create_app  # Import the factory function
 
-# Add the parent directory (backend) to the Python path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-from app import create_app
-
+# Create the app instance
 app = create_app()
 
+# Ensure that the database tables are created (only if needed)
+with app.app_context():
+    from app.db import db  # Import db here
+    db.create_all()  # Create all tables if they don't exist
+
 if __name__ == '__main__':
+    # Start the app
     app.run(debug=True)
+
+
