@@ -37089,25 +37089,25 @@
 /***/ })
 /******/ ]);
 //# sourceMappingURL=bundle.js.map </script></head><body>
-        <div class="lime top_div" id="top_divFQN9WG1JUXUQU71"></div>
+        <div class="lime top_div" id="top_divUOF33B7AS77QRDT"></div>
         
         <script>
-        var top_div = d3.select('#top_divFQN9WG1JUXUQU71').classed('lime top_div', true);
+        var top_div = d3.select('#top_divUOF33B7AS77QRDT').classed('lime top_div', true);
         
             var pp_div = top_div.append('div')
                                 .classed('lime predict_proba', true);
             var pp_svg = pp_div.append('svg').style('width', '100%');
-            var pp = new lime.PredictProba(pp_svg, ["3", "4"], [0.9841887030523144, 0.015811296947685505]);
+            var pp = new lime.PredictProba(pp_svg, ["3", "4"], [0.9461017918769308, 0.05389820812306934]);
             
         
         var exp_div;
             var exp = new lime.Explanation(["3", "4"]);
         
                 exp_div = top_div.append('div').classed('lime explanation', true);
-                exp.show([["WorkLifeBalance > 3.00", -0.36326213564484683], ["YearsInCurrentRole <= 2.00", 0.08929280484681112], ["TotalWorkingYears <= 6.00", 0.033431602386474295], ["3.00 < JobSatisfaction <= 4.00", -0.003977776912676136]], 1, exp_div);
+                exp.show([["WorkLifeBalance > 3.00", -0.27969337873636024], ["YearsInCurrentRole <= 2.00", 0.08947827346502196], ["TotalWorkingYears <= 6.00", 0.057315702962809606]], 1, exp_div);
                 
         var raw_div = top_div.append('div');
-            exp.show_raw_tabular([["WorkLifeBalance", "4.00", -0.36326213564484683], ["YearsInCurrentRole", "0.00", 0.08929280484681112], ["TotalWorkingYears", "0.00", 0.033431602386474295], ["JobSatisfaction", "4.00", -0.003977776912676136]], 1, raw_div);
+            exp.show_raw_tabular([["WorkLifeBalance", "4.00", -0.27969337873636024], ["YearsInCurrentRole", "0.00", 0.08947827346502196], ["TotalWorkingYears", "0.00", 0.057315702962809606]], 1, raw_div);
         
         </script>
         </body></html>

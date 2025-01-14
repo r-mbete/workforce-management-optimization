@@ -37089,25 +37089,25 @@
 /***/ })
 /******/ ]);
 //# sourceMappingURL=bundle.js.map </script></head><body>
-        <div class="lime top_div" id="top_divC7EL055N28OEYPF"></div>
+        <div class="lime top_div" id="top_divM08CCLPTM3043UD"></div>
         
         <script>
-        var top_div = d3.select('#top_divC7EL055N28OEYPF').classed('lime top_div', true);
+        var top_div = d3.select('#top_divM08CCLPTM3043UD').classed('lime top_div', true);
         
             var pp_div = top_div.append('div')
                                 .classed('lime predict_proba', true);
             var pp_svg = pp_div.append('svg').style('width', '100%');
-            var pp = new lime.PredictProba(pp_svg, ["3", "4"], [0.7680895482358101, 0.23191045176418976]);
+            var pp = new lime.PredictProba(pp_svg, ["3", "4"], [0.7715963635351244, 0.22840363646487566]);
             
         
         var exp_div;
             var exp = new lime.Explanation(["3", "4"]);
         
                 exp_div = top_div.append('div').classed('lime explanation', true);
-                exp.show([["6.00 < TotalWorkingYears <= 10.00", 0.044912849531729394], ["2.00 < YearsInCurrentRole <= 3.00", 0.02899512967101776], ["WorkLifeBalance <= 2.00", 0.01780523978036319], ["JobSatisfaction <= 2.00", 0.0018721934367289675]], 1, exp_div);
+                exp.show([["6.00 < TotalWorkingYears <= 10.00", 0.0479188374733041], ["2.00 < YearsInCurrentRole <= 3.00", 0.010213414356026882], ["WorkLifeBalance <= 2.00", -0.006200809280844159]], 1, exp_div);
                 
         var raw_div = top_div.append('div');
-            exp.show_raw_tabular([["TotalWorkingYears", "10.00", 0.044912849531729394], ["YearsInCurrentRole", "3.00", 0.02899512967101776], ["WorkLifeBalance", "1.00", 0.01780523978036319], ["JobSatisfaction", "1.00", 0.0018721934367289675]], 1, raw_div);
+            exp.show_raw_tabular([["TotalWorkingYears", "10.00", 0.0479188374733041], ["YearsInCurrentRole", "3.00", 0.010213414356026882], ["WorkLifeBalance", "1.00", -0.006200809280844159]], 1, raw_div);
         
         </script>
         </body></html>

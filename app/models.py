@@ -11,8 +11,7 @@ class Employee(db.Model):
     gender = db.Column(db.String(10), nullable=False)
     education_level = db.Column(db.String(50), nullable=False)
     job_role = db.Column(db.String(100), nullable=False)
-    total_working_years = db.Column(db.Integer, nullable=False)
-    job_satisfaction = db.Column(db.Float, nullable=False)  
+    total_working_years = db.Column(db.Integer, nullable=False)  
     work_life_balance = db.Column(db.Float, nullable=False)
     years_in_current_role = db.Column(db.Integer, nullable=False) 
 

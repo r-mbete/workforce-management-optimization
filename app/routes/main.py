@@ -9,8 +9,12 @@ import csv
 main = Blueprint('main', __name__)
 
 @main.route('/')
-@login_required
 def index():
+    # Check if the user is authenticated
+    if current_user.is_authenticated:
+        # Redirect authenticated users to the dashboard
+        return redirect(url_for('main.dashboard'))
+    # Render the index.html for unauthenticated users
     return render_template('index.html')
 
 @main.route('/dashboard')
@@ -50,7 +54,6 @@ def add_employee():
             'education_level': request.form.get('education_level'),
             'job_role': request.form.get('job_role'),
             'total_working_years': float(request.form.get('years_experience')),
-            'job_satisfaction': float(request.form.get('job_satisfaction')),
             'work_life_balance': float(request.form.get('work_life_balance')),
             'years_in_current_role': int(request.form.get('years_in_current_role'))
         }
@@ -80,7 +83,6 @@ def classify_employee():
         try:
             # Perform classification
             classification_label, confidence = classify_performance({
-                'JobSatisfaction': employee.job_satisfaction,
                 'WorkLifeBalance': employee.work_life_balance,
                 'YearsInCurrentRole': employee.years_in_current_role,
                 'TotalWorkingYears': employee.total_working_years,
@@ -145,7 +147,6 @@ def edit_employee(employee_id):
         employee.gender = request.form.get('gender')
         employee.education_level = request.form.get('education_level')
         employee.total_working_years = float(request.form.get('years_experience'))
-        employee.job_satisfaction = float(request.form.get('job_satisfaction'))
         employee.work_life_balance = float(request.form.get('work_life_balance'))
         employee.years_in_current_role = int(request.form.get('years_in_current_role'))
 

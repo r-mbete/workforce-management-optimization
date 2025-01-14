@@ -30,7 +30,7 @@
         }
 
         .styled-table th {
-            background-color: #3F8EFC;
+            background-color: #6A11CB;
             color: #FFFFFF;
             font-size: 1rem;
             text-transform: uppercase;
@@ -139,6 +139,11 @@
             <div class="chart-container">
                 <canvas id="performanceChart"></canvas>
             </div>
+            <div class="btn-container">
+                <form method="POST" action="{{ url_for('main.generate_report') }}">
+                    <button type="submit" class="btn">Generate Report</button>
+                </form>
+            </div>
             <table class="styled-table">
                 <thead>
                     <tr>
@@ -146,12 +151,10 @@
                         <th>Name</th>
                         <th>Age</th>
                         <th>Gender</th>
-                        <th>Education Level</th>
                         <th>Role</th>
                         <th>Total Working Years</th>
                         <th>Years in Current Role</th>
                         <th>Work-Life Balance</th>
-                        <th>Job Satisfaction</th>
                         <th>Performance</th>
                         <th>Actions</th>
                     </tr>
@@ -163,12 +166,10 @@
                         <td>{{ employee.name }}</td>
                         <td>{{ employee.age }}</td>
                         <td>{{ employee.gender }}</td>
-                        <td>{{ employee.education_level }}</td>
                         <td>{{ employee.job_role }}</td>
                         <td>{{ employee.total_working_years }}</td>
                         <td>{{ employee.years_in_current_role }}</td>
                         <td>{{ employee.work_life_balance }}</td>
-                        <td>{{ employee.job_satisfaction }}</td>
                         <td>
                             {% set classification = classified_employees | selectattr('employee_id', 'equalto', employee.id) | list %}
                             {% if classification %}
@@ -188,12 +189,7 @@
                     </tr>
                     {% endfor %}
                 </tbody>                               
-            </table>
-            <div class="btn-container">
-                <form method="POST" action="{{ url_for('main.generate_report') }}">
-                    <button type="submit" class="btn">Generate Report</button>
-                </form>
-            </div>                        
+            </table>                        
         </main>
     </div>
     <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>

@@ -27,7 +27,7 @@ def classify_performance(employee_data):
     load_model()
 
     # Match feature names used during training
-    feature_names = ['JobSatisfaction', 'WorkLifeBalance', 'YearsInCurrentRole', 'TotalWorkingYears']
+    feature_names = ['WorkLifeBalance', 'YearsInCurrentRole', 'TotalWorkingYears']
     
     # Create a DataFrame with the appropriate feature names
     features = pd.DataFrame([employee_data], columns=feature_names)
